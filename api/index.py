@@ -764,13 +764,13 @@ def keep_alive_ping():
     while True:
         try:
             # Send a simple GET request
-            urllib.request.urlopen("https://astrkaar-manage-git-main-sams-projects-1dafe59e.vercel.app/", timeout=10)
+            urllib.request.urlopen("https://astrkaar.vercel.app/", timeout=10)
             print("[SYSTEM] Ping sent to myserver.com")
         except Exception as e:
             print(f"[SYSTEM] Ping failed: {e}")
         
         # Wait for 15 minutes (15 * 60 = 900 seconds)
-        time.sleep(900)
+        time.sleep(660)
 ping_thread = threading.Thread(target=keep_alive_ping, daemon=True)
 ping_thread.start()
     
