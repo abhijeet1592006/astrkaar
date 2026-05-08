@@ -771,14 +771,10 @@ def keep_alive_ping():
         
         # Wait for 15 minutes (15 * 60 = 900 seconds)
         time.sleep(900)
-
-
-if __name__ == '__main__':
-    # Start the background ping thread
-    ping_thread = threading.Thread(target=keep_alive_ping, daemon=True)
-    ping_thread.start()
+ping_thread = threading.Thread(target=keep_alive_ping, daemon=True)
+ping_thread.start()
     
     # Start Flask
-    app.run(debug=True, port=5000)
+    
     
     
