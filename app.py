@@ -759,26 +759,26 @@ def remove_user():
 
 
 
+import os
+
 def keep_alive_ping():
-    """Sends a ping to the server every 15 minutes (900 seconds)"""
     while True:
         try:
-            # Send a simple GET request
             urllib.request.urlopen("https://astrkaar.onrender.com/", timeout=10)
-            print("[SYSTEM] Ping sent to myserver.com")
+            print("[SYSTEM] Ping sent to astrkaar.onrender.com")
         except Exception as e:
             print(f"[SYSTEM] Ping failed: {e}")
-        
-        # Wait for 15 minutes (15 * 60 = 900 seconds)
         time.sleep(560)
 
-
-if __name__ == '__main__':
-    # Start the background ping thread
+# Only start the thread if we are in the main Gunicorn worker process
+# (Gunicorn sets specific environment variables we can check, or we just let it run)
+# To avoid multiple threads in Gunicorn, we check if it's the main process:
+if not os.environ.get('WERKZEUG_RUN_MAIN') and not os.environ.get('GUNICORN_WORKER_READY'):
+    # Note: this is a hacky workaround. Solution 1 is much safer.
+    os.environ['GUNICORN_WORKER_READY'] = 'true'
     ping_thread = threading.Thread(target=keep_alive_ping, daemon=True)
     ping_thread.start()
-    
-    # Start Flask
+
+if __name__ == '__main__':
     app.run(debug=True, port=5000)
-    
     
