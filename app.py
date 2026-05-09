@@ -764,7 +764,7 @@ def keep_alive_ping():
     while True:
         try:
             # Send a simple GET request
-            urllib.request.urlopen("https://www.com", timeout=10)
+            urllib.request.urlopen("https://astrkaar.onrender.com/", timeout=10)
             print("[SYSTEM] Ping sent to myserver.com")
         except Exception as e:
             print(f"[SYSTEM] Ping failed: {e}")
