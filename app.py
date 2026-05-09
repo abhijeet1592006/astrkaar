@@ -770,7 +770,7 @@ def keep_alive_ping():
             print(f"[SYSTEM] Ping failed: {e}")
         
         # Wait for 15 minutes (15 * 60 = 900 seconds)
-        time.sleep(900)
+        time.sleep(560)
 
 
 if __name__ == '__main__':
