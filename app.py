@@ -12,10 +12,10 @@ app = Flask(__name__)
 app.secret_key = 'astrkaar_classified_directive_sigma_99'
 import os
 # If hosted on Vercel, use the /tmp directory to avoid read-only crashes
-if os.environ.get('VERCEL'):
-    DB_FILE = '/tmp/astrkaar.db'
-else:
-    DB_FILE = 'astrkaar.db'
+# if os.environ.get('VERCEL'):
+#     DB_FILE = '/tmp/astrkaar.db'
+# else:
+DB_FILE = 'astrkaar.db'
 
 # --- DATABASE SETUP (SQLite3) ---
 def get_db():
